@@ -1,8 +1,3 @@
-// import Head from 'next/head'
-// import Image from 'next/image'
-// import { Inter } from '@next/font/google'
-// import styles from '../styles/Home.module.css'
-
 import type { NextPage } from "next";
 import { Canvas } from "@react-three/fiber"
 import { Stats, OrbitControls, Stars } from "@react-three/drei";
@@ -18,8 +13,9 @@ const Home: NextPage = () => {
             far: 10000000
           }}
       >
+          <Stats/>
           <OrbitControls makeDefault enableDamping={false} maxDistance={500000} />
-          <axesHelper args={[10, 10, 10]} position={[0, 0, 0]} />
+          <axesHelper args={[10]} position={[0, 0, 0]} />
           <ambientLight intensity={0.5} />
           <Stars radius={100000} />
       </Canvas>
