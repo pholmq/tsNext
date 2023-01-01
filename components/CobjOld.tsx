@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { folder, useControls, button } from "leva";
-import celestialSettings from "../settings/celestial-settings.json"
-import miscSettings from "../settings/misc-settings.json";
+import celestialSettings from "../settings/celestial-settings"
+import miscSettings from "../settings/misc-settings";
 import { useStore } from "../store";
 import { Vector3 } from "three";
 
@@ -10,22 +10,15 @@ import { Orbit } from "./Orbit";
 import { Planet } from "./Planet";
 import { Earth } from "./Earth";
 
-type Props = {
-    name: string;
-    children?: React.ReactNode;
-  };
-
-export const Cobj = ({name, children}: Props) => {
-    const cName: string = name;
+export function Cobj({ name, children }: {name: string, children: any}) {
   //REMINDER to self: DONT FORGET PLANET TILT OF EARTH tilt and tiltb
   // Cobj = Celestial Object
   //console.log(name + " rendered");
   //Destructuring with a dynamic key
 
   //Get the settings for this object and merge
-  const cSettings = celestialSettings[name as keyof typeof celestialSettings];
-  const aSettings = miscSettings[name as keyof typeof miscSettings];
-//   const { [name]: aSettings } = miscSettings;
+  const { [name]: cSettings } = celestialSettings;
+  const { [name]: aSettings } = miscSettings;
   const s = { ...cSettings, ...aSettings };
 
   const containerRef = useRef();

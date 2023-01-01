@@ -2,6 +2,13 @@ import type { NextPage } from "next";
 import { Canvas } from "@react-three/fiber"
 import { Stats, OrbitControls, Stars } from "@react-three/drei";
 
+
+import celestialSettings from '../settings/celestial-settings.json'
+
+const cName = "Earth"
+
+console.log(celestialSettings[cName])
+
 const Home: NextPage = () => {
   return (
     <div className="container">

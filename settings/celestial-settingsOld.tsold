@@ -152,8 +152,6 @@ const celestialSettings = {
       orbitTiltb: 0.1
     },
     VenusDefB: {
-      color: "orange",
-      type: "deferent",
       name: "Venus deferent B",
       size: 2,
       startPos: 3,
