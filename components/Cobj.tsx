@@ -20,8 +20,7 @@ export const Cobj = ({name, children}: Props) => {
   //REMINDER to self: DONT FORGET PLANET TILT OF EARTH tilt and tiltb
   // Cobj = Celestial Object
   //console.log(name + " rendered");
-  //Destructuring with a dynamic key
-
+  
   //Get the settings for this object and merge
   const cSettings = celestialSettings[name as keyof typeof celestialSettings];
   const aSettings = miscSettings[name as keyof typeof miscSettings];
