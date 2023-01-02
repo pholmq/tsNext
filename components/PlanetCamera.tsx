@@ -9,8 +9,8 @@ import {
   useHelper
 } from "@react-three/drei";
 export default function PlanetCamera(props: any) {
-  const { camera, scene } = useThree();
-  const camControls = useThree((state) => state.controls);
+  const { camera, scene }: any = useThree();
+  const camControls: any = useThree((state) => state.controls);
 
   const toggleCam = useControls("Planet Camera", {
     on: false
@@ -88,7 +88,7 @@ export default function PlanetCamera(props: any) {
         earthObj.getWorldPosition(vec);
 
         console.log(
-          "Rotation: " + [...earthObj.rotation] + " Worldpos: " + [...vec]
+          "Rotation: " + [...earthObj.rotation] + " Worldpos: " + {...vec}
         );
       } else {
         // camera.position.copy(orgCamPos);
