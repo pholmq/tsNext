@@ -2,12 +2,7 @@ import type { NextPage } from "next";
 import { Canvas } from "@react-three/fiber"
 import { Stats, OrbitControls, Stars } from "@react-three/drei";
 
-
-import celestialSettings from '../settings/celestial-settings.json'
-
-const cName = "Earth"
-
-console.log(celestialSettings[cName])
+import SolarSystem from "../components/SolarSystem"
 
 const Home: NextPage = () => {
   return (
@@ -25,6 +20,7 @@ const Home: NextPage = () => {
           <axesHelper args={[10]} position={[0, 0, 0]} />
           <ambientLight intensity={0.5} />
           <Stars radius={100000} />
+          <SolarSystem />
       </Canvas>
     </div>
   )

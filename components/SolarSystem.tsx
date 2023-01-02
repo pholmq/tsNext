@@ -1,4 +1,6 @@
 
+import { Cobj } from "./Cobj";
+
 const SolarSystem = () => {
   
     return (

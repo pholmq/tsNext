@@ -8,12 +8,11 @@ import {
   SelectiveBloom
 } from "@react-three/postprocessing";
 
-import PlanetCamera from "./PlanetCamera";
-
 // import PlanetCamera from "./PlanetCamera";
 
-export function Planet(props) {
-  const ref = useRef();
+
+export function Planet(props: any) {
+  const ref: any = useRef();
   // useFrame(() => {
   //   ref.current.rotation.y -= 0.0005;
   // });
@@ -30,13 +29,13 @@ export function Planet(props) {
         <Html position={[0, 0, 0]}>
           <div className="planetLabel">
             {props.name} <br />
-            RA:&nbsp;XXhXXmXXs Dec:&nbsp;+XX°XX'XX"
+            RA:&nbsp;XXhXXmXXs Dec:&nbsp;+XX°XX`&apos;`XX`&quot;`
           </div>
         </Html>
       )}
       <mesh
         ref={ref}
-        scale="1"
+        scale={1}
         // { e.stopPropagation(); handleT(); }}
         onPointerOver={(e) => {
           e.stopPropagation();

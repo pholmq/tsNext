@@ -8,7 +8,7 @@ import {
   Box,
   useHelper
 } from "@react-three/drei";
-export default function PlanetCamera(props) {
+export default function PlanetCamera(props: any) {
   const { camera, scene } = useThree();
   const camControls = useThree((state) => state.controls);
 
@@ -38,7 +38,7 @@ export default function PlanetCamera(props) {
   // console.log("camera: " + camera);
   // console.log("camControls.enabled: " + camControls.enabled);
   const planetCam: any = useRef();
-  useHelper(showH.showHelper && planetCam, CameraHelper, 1);
+  useHelper(showH.showHelper && planetCam, CameraHelper);
 
   const vector = new Vector3();
   const quaternion = new Quaternion();

@@ -5,14 +5,16 @@ import { useStore } from "../store";
 import { Html } from "@react-three/drei";
 
 import PlanetCamera from "./PlanetCamera";
-import { CelestialSphere } from "./CelestialSphere.jsx";
+import { CelestialSphere } from "./CelestialSphere";
 
-export function Earth(props) {
+
+
+export function Earth(props: any) {
   // console.log(props)
 
-  const earthRef = useRef();
-  const cloudsRef = useRef();
-  const posRef = useStore((state) => state.posRef);
+  const earthRef: any = useRef();
+  const cloudsRef: any = useRef();
+  const posRef: any = useStore((state) => state.posRef);
 
   const [cloudsMap, colorMap, bumpMap] = useTexture([
     "/textures/2k_earth_clouds.jpg",
@@ -39,7 +41,7 @@ export function Earth(props) {
       <mesh
         name="Earth"
         ref={earthRef}
-        scale="1"
+        scale={1}
         rotation={[
           props.tiltb * (Math.PI / 180),
           0,
@@ -60,7 +62,7 @@ export function Earth(props) {
           // side={DoubleSide}
         /> */}
         <meshPhongMaterial map={colorMap} specular={0x404040} />
-        <mesh ref={cloudsRef} scale="1">
+        <mesh ref={cloudsRef} scale={1}>
           <sphereGeometry args={[props.size + 0.03, 64, 64]} />
           <meshPhongMaterial
             map={cloudsMap}
