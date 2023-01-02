@@ -15,6 +15,31 @@ type Props = {
     children?: React.ReactNode;
   };
 
+type Settings = {
+    color: string;
+    type: string;
+    visible: boolean;
+    axesHelper: boolean;
+    name: string;
+    size: number;
+    containerPos?: number;
+    startPos: number;
+    speed: number;
+    rotationSpeed: number;
+    tilt: number;
+    tiltb: number;
+    orbitRadius: number;
+    orbitCentera: number;
+    orbitCenterb: number;
+    orbitCenterc: number;
+    orbitTilta: number;
+    orbitTiltb: number;
+    arrows: boolean;
+    reverseArrows: boolean;
+    rotationArrows: number;
+    earth: boolean;
+  }
+
 export const Cobj = ({name, children}: Props) => {
     const cName: string = name;
   //REMINDER to self: DONT FORGET PLANET TILT OF EARTH tilt and tiltb
@@ -22,14 +47,14 @@ export const Cobj = ({name, children}: Props) => {
   //console.log(name + " rendered");
   
   //Get the settings for this object and merge
-  const cSettings = celestialSettings[name as keyof typeof celestialSettings];
-  const aSettings = miscSettings[name as keyof typeof miscSettings];
+  const cSettings: any = celestialSettings[name as keyof typeof celestialSettings];
+  const aSettings: any = miscSettings[name as keyof typeof miscSettings];
 //   const { [name]: aSettings } = miscSettings;
-  const s = { ...cSettings, ...aSettings };
+  const s: Settings = { ...cSettings, ...aSettings };
 
-  const containerRef = useRef();
-  const pivotRef = useRef();
-  const orbitRef = useRef();
+  const containerRef: any = useRef();
+  const pivotRef: any = useRef();
+  const orbitRef: any = useRef();
 
   //const _vector = new Vector3();
   function printPositions() {
@@ -112,7 +137,7 @@ export const Cobj = ({name, children}: Props) => {
   const containerPos = s.containerPos ? s.containerPos : 0;
   // let pos = 0;
   //  const pos = useStore((state) => state.pos);
-  const posRef = useStore((state) => state.posRef);
+  const posRef: any = useStore((state) => state.posRef);
   useFrame(() => {
     // const pos = posx.current;
     //pos += 0.01;
@@ -155,7 +180,7 @@ export const Cobj = ({name, children}: Props) => {
               opacity={0.9}
               transparent
             /> */}
-          {s.axesHelper && <axesHelper args={[10, 10, 10]} />}
+          {s.axesHelper && <axesHelper args={[10]} />}
           {s.earth && <Earth {...s} />}
           {s.type === "planet" && <Planet {...s} />}
           {/* </Sphere> */}
