@@ -29,7 +29,7 @@ export function Planet(props: any) {
         <Html position={[0, 0, 0]}>
           <div className="planetLabel">
             {props.name} <br />
-            RA:&nbsp;XXhXXmXXs Dec:&nbsp;+XX°XX`&apos;`XX`&quot;`
+            RA:&nbsp;XXhXXmXXs Dec:&nbsp;+XX°XX&apos;XX&quot;
           </div>
         </Html>
       )}
