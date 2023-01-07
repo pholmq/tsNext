@@ -14,7 +14,7 @@ export default function PlanetCamera(props: any) {
 
   const toggleCam = useControls("Planet Camera", {
     on: false
-  });
+  },  { collapsed: true });
 
   const [showH, setHelper] = useControls("Planet Camera", () => ({
     showHelper: false

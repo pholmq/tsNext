@@ -131,6 +131,8 @@ export const Cobj = ({name, children}: Props) => {
         })
       })
     },
+    
+    // {options : { collapsed : true }}
     { collapsed: true }
   );
 
