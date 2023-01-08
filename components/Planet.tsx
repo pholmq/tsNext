@@ -26,7 +26,7 @@ export function Planet(props: any) {
   return (
     <>
       {hovered && (
-        <Html position={[0, 0, 0]}>
+        <Html position={[0, 0, 0]} style={{ pointerEvents: 'none' }}>
           <div className="planetLabel">
             {props.name} <br />
             RA:&nbsp;XXhXXmXXs Dec:&nbsp;+XX°XX&apos;XX&quot;

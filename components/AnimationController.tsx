@@ -14,7 +14,6 @@ useFrame((state, delta) => {
     posRef.current = posRef.current + delta * speedFact;
   }
 })
-
 return null
 };
 

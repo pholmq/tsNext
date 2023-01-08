@@ -175,17 +175,9 @@ export const Cobj = ({name, children}: Props) => {
       )}
       <group name="Orbit" ref={orbitRef}>
         <group name="Pivot" ref={pivotRef} position={[orbitRadius, 0, 0]}>
-          {/* <Sphere args={[1, 30, 30]} visible={s.visible}>
-            <meshBasicMaterial
-              attach="material"
-              color={s.color}
-              opacity={0.9}
-              transparent
-            /> */}
           {s.axesHelper && <axesHelper args={[10]} />}
           {s.earth && <Earth {...s} />}
           {s.type === "planet" && <Planet {...s} />}
-          {/* </Sphere> */}
           {children}
         </group>
       </group>
