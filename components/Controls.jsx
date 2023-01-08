@@ -15,21 +15,17 @@ import {
 } from "../utils/time-date-functions";
 
 const Controls = () => {
-  const toggleRun = useStore((state) => state.toggleRun);
-  const toggleOrbits = useStore((state) => state.toggleOrbits);
-  const toggleArrows = useStore((state) => state.toggleArrows);
   const posRef = useStore((state) => state.posRef);
   const speedFact = useStore((state) => state.speedFact);
-  const setSpeedFact = useStore((state) => state.setSpeedFact);
 
   useControls(() => ({
     orbits: {
       value: useStore.getState().orbits,
-      onChange: (v) => toggleOrbits(v)
+      onChange: (v) => useStore.setState({orbits: v}),
     },
     arrows: {
       value: useStore.getState().arrows,
-      onChange: (v) => toggleArrows(v)
+      onChange: (v) => useStore.setState({arrows: v}),
     }
   }));
 
@@ -142,7 +138,7 @@ const Controls = () => {
   }
 
   function runOnChange(e) {
-    toggleRun(e.target.checked);
+    useStore.setState({run: e.target.checked})
     updateControls();
   }
 
@@ -157,8 +153,7 @@ const Controls = () => {
 
   const options = speedFactOptions;
   function speedFactChange(e) {
-    setSpeedFact(Number(e.target.value));
-    // console.log("speedFact: " + speedFact);
+    useStore.setState({speedFact: Number(e.target.value)})
   }
 
   return (
