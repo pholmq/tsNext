@@ -118,7 +118,7 @@
       "visible": false
     },
     "Jupiter": {
-      "color": "0xcdc2b2",
+      "color": "0xa79662",
       "type": "planet",
       "visible": true,
       "texture": "/textures/planets/2k_jupiter.jpg"

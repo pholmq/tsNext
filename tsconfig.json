@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "settings/celestial-settingsOld.tsold", "store.js", "components/Controls.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "store.js", "components/Controls.jsx"],
   "exclude": ["node_modules"]
 }

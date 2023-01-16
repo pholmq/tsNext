@@ -7,5 +7,7 @@ export const useStore = create((set) => ({
     run: false,
     speedFact: getDefaultSpeedFact(),
     orbits: true,
+    orbitsLinewidth: 1,
     arrows: false,
+    arrowScale: 1
 }));

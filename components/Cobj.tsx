@@ -166,7 +166,7 @@ export const Cobj = ({name, children}: Props) => {
           <Orbit
             radius={orbitRadius}
             color={s.color}
-            lineWidth={0.5}
+            lineWidth={2}
             arrows={s.arrows}
             reverse={s.reverseArrows}
             rotation={s.rotationArrows ? s.rotationArrows : 0}

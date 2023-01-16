@@ -8,16 +8,25 @@ type ArrowProps = {
   radius: number;
   color: string;
   reverse?: boolean;
+  scale?: number;
 };
 
-function Arrow({ rotation, radius, color, reverse = false }: ArrowProps ) {
+function Arrow({
+  rotation,
+  radius,
+  color,
+  reverse = false,
+  scale = 3,
+}: ArrowProps) {
+  const arrowScale = useStore((s) => s.arrowScale);
+
   let arrowDirection = 0;
   if (reverse) {
     arrowDirection = Math.PI;
   }
   return (
     <group rotation={[0, 0, rotation]}>
-      <mesh position={[radius, 0, 0]} rotation={[0, 0, arrowDirection]}>
+      <mesh position={[radius, 0, 0]} rotation={[0, 0, arrowDirection]} scale={arrowScale}>
         <coneGeometry args={[3, 8]} />
         <meshBasicMaterial color={color} opacity={0.5} transparent />
       </mesh>
@@ -26,25 +35,31 @@ function Arrow({ rotation, radius, color, reverse = false }: ArrowProps ) {
 }
 
 type OrbitProps = {
-radius: number;
-color: string;
-lineWidth: number;
-arrows: boolean;
-reverse: boolean;
-rotation: number;
+  radius: number;
+  color: string;
+  lineWidth: number;
+  arrows: boolean;
+  reverse: boolean;
+  rotation: number;
 };
-
 
 export function Orbit({
   radius,
   color,
-  lineWidth = 1,
+  lineWidth,
   arrows = false,
   reverse = false,
-  rotation = 0
+  rotation = 0,
 }: OrbitProps) {
   const orbitRef: any = useRef();
   const posRef: any = useStore((state) => state.posRef);
+
+  const showArrows = useStore((s) => s.arrows);
+  const showOrbits = useStore((s) => s.orbits);
+  const orbitsLinewidth = useStore((s) => s.orbitsLinewidth);
+  
+  // console.log(showOrbits);
+
 
   useFrame(() => {
     if (showOrbits) {
@@ -62,20 +77,17 @@ export function Orbit({
     points.push([
       Math.sin(i * (Math.PI / 180)) * radius,
       Math.cos(i * (Math.PI / 180)) * radius,
-      0
+      0,
     ]);
     if (i === arrowStepSize) {
       arrowPoints.push([
         Math.sin(i * (Math.PI / 180)) * radius,
         Math.cos(i * (Math.PI / 180)) * radius,
-        0
+        0,
       ]);
       arrowStepSize += arrowStepSize;
     }
   }
-  const showArrows = useStore((s) => s.arrows);
-  const showOrbits = useStore((s) => s.orbits);
-  // console.log(showOrbits);
 
   return (
     <>
@@ -111,7 +123,7 @@ export function Orbit({
         <Line
           points={points} // Array of points
           color={color} // Default
-          lineWidth={lineWidth} // In pixels (default)
+          lineWidth={orbitsLinewidth} // In pixels (default)
           dashed={false}
           transparent
           opacity={0.5}

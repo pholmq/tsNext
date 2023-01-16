@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 // import { useFrame } from "@react-three/fiber";
-import { Leva, useControls } from "leva";
+import { folder, Leva, useControls } from "leva";
 import { useStore } from "../store";
 import {
   posToDate,
@@ -17,18 +17,30 @@ import {
 const Controls = () => {
   const posRef = useStore((state) => state.posRef);
   const speedFact = useStore((state) => state.speedFact);
-
+  // useControls("banana",{ripe: false})
+  
   useControls(() => ({
-    orbits: {
+    // banana: folder({x:"x"}),
+    Orbits: {
       value: useStore.getState().orbits,
       onChange: (v) => useStore.setState({orbits: v}),
     },
-    arrows: {
+    "Orbits line width": {
+      value: useStore.getState().orbitsLinewidth,
+      onChange: (v) => useStore.setState({orbitsLinewidth: v}),
+    },
+    
+    Arrows: {
       value: useStore.getState().arrows,
       onChange: (v) => useStore.setState({arrows: v}),
-    }
+    },
+    "Arrow size": {
+      value: useStore.getState().arrowScale,
+      onChange: (v) => useStore.setState({arrowScale: v}),
+    },
+    "Celestial settings": folder({},{collapsed: true}),
   }));
-
+  
   const runRef = useRef(useStore.getState().run);
   const dateRef = useRef();
   const timeRef = useRef();
