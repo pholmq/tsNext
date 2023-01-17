@@ -1,3 +1,4 @@
+import styles from "./Controls.module.css";
 import { useEffect, useRef } from "react";
 // import { useFrame } from "@react-three/fiber";
 import { folder, Leva, useControls } from "leva";
@@ -11,36 +12,37 @@ import {
   isValidTime,
   isNumeric,
   julianDayTimeToPos,
-  speedFactOptions
+  speedFactOptions,
 } from "../utils/time-date-functions";
+import Playbtn from "./Playbtn";
 
 const Controls = () => {
   const posRef = useStore((state) => state.posRef);
   const speedFact = useStore((state) => state.speedFact);
   // useControls("banana",{ripe: false})
-  
+
   useControls(() => ({
     // banana: folder({x:"x"}),
     Orbits: {
       value: useStore.getState().orbits,
-      onChange: (v) => useStore.setState({orbits: v}),
+      onChange: (v) => useStore.setState({ orbits: v }),
     },
     "Orbits line width": {
       value: useStore.getState().orbitsLinewidth,
-      onChange: (v) => useStore.setState({orbitsLinewidth: v}),
+      onChange: (v) => useStore.setState({ orbitsLinewidth: v }),
     },
-    
+
     Arrows: {
       value: useStore.getState().arrows,
-      onChange: (v) => useStore.setState({arrows: v}),
+      onChange: (v) => useStore.setState({ arrows: v }),
     },
     "Arrow size": {
       value: useStore.getState().arrowScale,
-      onChange: (v) => useStore.setState({arrowScale: v}),
+      onChange: (v) => useStore.setState({ arrowScale: v }),
     },
-    "Celestial settings": folder({},{collapsed: true}),
+    "Celestial settings": folder({}, { collapsed: true }),
   }));
-  
+
   const runRef = useRef(useStore.getState().run);
   const dateRef = useRef();
   const timeRef = useRef();
@@ -150,7 +152,7 @@ const Controls = () => {
   }
 
   function runOnChange(e) {
-    useStore.setState({run: e.target.checked})
+    useStore.setState({ run: e.target.checked });
     updateControls();
   }
 
@@ -165,26 +167,33 @@ const Controls = () => {
 
   const options = speedFactOptions;
   function speedFactChange(e) {
-    useStore.setState({speedFact: Number(e.target.value)})
+    useStore.setState({ speedFact: Number(e.target.value) });
+    console.log(
+      "🚀 ~ file: Controls.jsx:170 ~ speedFactChange ~ e.target.value",
+      e.target.value
+    );
   }
 
   return (
-    <div className="controls">
+    <div className={styles.controls}>
       <h2>The TYCHOSIUM</h2>
-      <div className="controlGroup">
-        <div className="control">
+      <div className={styles.controlGroup}>
+        {/* <div className={styles.playb}>
+          <Playbtn />
+        </div> */}
+        <div className={styles.control}>
           <label hidden>Pos:</label>
           <input hidden ref={posDisplayRef} onKeyDown={posKeyDown} />
         </div>
-        <div className="control">
+        <div className={styles.control}>
           <label>Date:</label>
           <input ref={dateRef} onKeyDown={dateKeyDown} onBlur={dateOnBlur} />
         </div>
-        <div className="control">
+        <div className={styles.control}>
           <label>Time (UTC):</label>
           <input ref={timeRef} onKeyDown={timeKeyDown} onBlur={timeOnBlur} />
         </div>
-        <div className="control">
+        <div className={styles.control}>
           <label>Julian day:</label>
           <input
             ref={julianDayRef}
@@ -192,11 +201,11 @@ const Controls = () => {
             onBlur={jDayOnBlur}
           />
         </div>
-        <div className="control">
-          <label>Run</label>
+        <div className={styles.control}>
+          <label>Start / Stop:</label>
           <input type="checkbox" onChange={runOnChange} />
         </div>
-        <div className="control">
+        <div className={styles.control}>
           <button
             onClick={() => {
               posRef.current += speedFact;
@@ -210,7 +219,7 @@ const Controls = () => {
             Step forward
           </button>
         </div>
-        <div className="control">
+        <div className={styles.control}>
           <button
             onClick={() => {
               posRef.current -= speedFact;
@@ -221,7 +230,7 @@ const Controls = () => {
           </button>
         </div>
 
-        <div className="control">
+        <div className={styles.control}>
           <label>1 second equals</label>
           <select value={speedFact} onChange={speedFactChange}>
             {options.map((option) => (
@@ -232,20 +241,19 @@ const Controls = () => {
           </select>
         </div>
       </div>
-      <div className="control-Leva">
-      <Leva
-        fill
-        hideCopyButton
-        // collapsed
-        titleBar={{drag:false,filter: false, title: "Settings" }}
-        theme={{
-          colors: { highlight1: "#FFFFFF", highlight2: "#FFFFFF" },
-        }}
+      <div className={styles.controlLeva}>
+        <Leva
+          fill
+          hideCopyButton
+          // collapsed
+          titleBar={{ drag: false, filter: false, title: "Settings" }}
+          theme={{
+            colors: { highlight1: "#FFFFFF", highlight2: "#FFFFFF" },
+          }}
         />
-
       </div>
-     </div> //controls
+    </div> //controls
   );
 };
 
-export default Controls
+export default Controls;
