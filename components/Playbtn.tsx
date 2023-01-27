@@ -1,12 +1,19 @@
 import styles from "./Playbtn.module.css";
+import { FaBeer } from "react-icons/fa";
 export default function Playbtn() {
   return (
     <>
-      <div className={styles.playpause}>
-        <input type="checkbox" value="None" id="playpause" name="check" />
-        <label htmlFor="playpause" tabIndex={1}></label>
+      <div  className={styles.play_pause}>
+        <button>
+          <FaBeer />
+        </button>
       </div>
-      Playbtn
+
+      {/* <div className={styles.playpause}>
+        <FaBeer />
+        <input type="checkbox" value="None" id="playpause" name="check" />
+        <label htmlFor="playpause"></label>
+      </div> */}
     </>
   );
 }

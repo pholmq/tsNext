@@ -19,7 +19,7 @@ const Home: NextPage = () => {
             far: 10000000,
           }}
         >
-          <Stats />
+          {/* <Stats /> */}
           <OrbitControls
             makeDefault
             enableDamping={false}

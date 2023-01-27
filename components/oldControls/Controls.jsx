@@ -16,7 +16,6 @@ import {
 } from "../utils/time-date-functions";
 import Playbtn from "./Playbtn";
 import Forwardbtn from "./Forwardbtn";
-import { Stats } from "@react-three/drei";
 
 const Controls = () => {
   const posRef = useStore((state) => state.posRef);
@@ -179,66 +178,70 @@ const Controls = () => {
   return (
     <div className={styles.controls}>
       <h2>The TYCHOSIUM</h2>
-      <div className={styles.control}>
-        <Stats className={styles.stats} />
+      <div className={styles.controlGroup}>
+        <div className={styles.control}>
+          <Playbtn />
+          {/* <Forwardbtn /> */}
+        </div>
+        <div className={styles.control}>
+          <label hidden>Pos:</label>
+          <input hidden ref={posDisplayRef} onKeyDown={posKeyDown} />
+        </div>
+        <div className={styles.control}>
+          <label>Date:</label>
+          <input ref={dateRef} onKeyDown={dateKeyDown} onBlur={dateOnBlur} />
+        </div>
+        <div className={styles.control}>
+          <label>Time (UTC):</label>
+          <input ref={timeRef} onKeyDown={timeKeyDown} onBlur={timeOnBlur} />
+        </div>
+        <div className={styles.control}>
+          <label>Julian day:</label>
+          <input
+            ref={julianDayRef}
+            onKeyDown={jDayKeyDown}
+            onBlur={jDayOnBlur}
+          />
+        </div>
+        <div className={styles.control}>
+          <label>Start / Stop:</label>
+          <input type="checkbox" onChange={runOnChange} />
+        </div>
+        <div className={styles.control}>
+          <button
+            onClick={() => {
+              posRef.current += speedFact;
+              updateControls();
 
-        <Playbtn />
-        <Forwardbtn />
-      </div>
-      <div className={styles.control}>
-        <label hidden>Pos:</label>
-        <input hidden ref={posDisplayRef} onKeyDown={posKeyDown} />
-      </div>
-      <div className={styles.control}>
-        <label>Date:</label>
-        <input ref={dateRef} onKeyDown={dateKeyDown} onBlur={dateOnBlur} />
-      </div>
-      <div className={styles.control}>
-        <label>Time (UTC):</label>
-        <input ref={timeRef} onKeyDown={timeKeyDown} onBlur={timeOnBlur} />
-      </div>
-      <div className={styles.control}>
-        <label>Julian day:</label>
-        <input ref={julianDayRef} onKeyDown={jDayKeyDown} onBlur={jDayOnBlur} />
-      </div>
-      <div className={styles.control}>
-        <label>Start / Stop:</label>
-        <input type="checkbox" onChange={runOnChange} />
-      </div>
-      <div className={styles.control}>
-        <button
-          onClick={() => {
-            posRef.current += speedFact;
-            updateControls();
+              // console.log(
+              //   "posRef.current: " + posRef.current + " speedFact: " + speedFact
+              // );
+            }}
+          >
+            Step forward
+          </button>
+        </div>
+        <div className={styles.control}>
+          <button
+            onClick={() => {
+              posRef.current -= speedFact;
+              updateControls();
+            }}
+          >
+            Step backward
+          </button>
+        </div>
 
-            // console.log(
-            //   "posRef.current: " + posRef.current + " speedFact: " + speedFact
-            // );
-          }}
-        >
-          Step forward
-        </button>
-      </div>
-      <div className={styles.control}>
-        <button
-          onClick={() => {
-            posRef.current -= speedFact;
-            updateControls();
-          }}
-        >
-          Step backward
-        </button>
-      </div>
-
-      <div className={styles.control}>
-        <label>1 second equals</label>
-        <select value={speedFact} onChange={speedFactChange}>
-          {options.map((option) => (
-            <option value={option.value} key={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
+        <div className={styles.control}>
+          <label>1 second equals</label>
+          <select value={speedFact} onChange={speedFactChange}>
+            {options.map((option) => (
+              <option value={option.value} key={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
       <div className={styles.controlLeva}>
         <Leva
