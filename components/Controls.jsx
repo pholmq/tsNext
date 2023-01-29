@@ -17,10 +17,12 @@ import {
 import Playbtn from "./Playbtn";
 import Forwardbtn from "./Forwardbtn";
 import { Stats } from "@react-three/drei";
+import { FaPlay, FaPause, FaStepBackward, FaStepForward } from "react-icons/fa";
 
 const Controls = () => {
   const posRef = useStore((state) => state.posRef);
   const speedFact = useStore((state) => state.speedFact);
+  const run = useStore((state) => state.run);
   // useControls("banana",{ripe: false})
 
   useControls(() => ({
@@ -178,12 +180,41 @@ const Controls = () => {
 
   return (
     <div className={styles.controls}>
-      <h2>The TYCHOSIUM</h2>
+      <h2 className={styles.header}>The TYCHOSIUM</h2>
       <div className={styles.control}>
         <Stats className={styles.stats} />
-
-        <Playbtn />
-        <Forwardbtn />
+        <div className={styles.playbGroup}>
+          <button
+            className={styles.playb}
+            onClick={() => {
+              posRef.current -= speedFact;
+              updateControls();
+            }}
+          >
+            <FaStepBackward className={styles.playbIcon} />
+          </button>
+          <button
+            className={styles.playb}
+            onClick={() => {
+              useStore.setState((state) => ({ run: !state.run }));
+            }}
+          >
+            {run ? (
+              <FaPause className={styles.playbIcon} />
+            ) : (
+              <FaPlay className={styles.playbIcon} />
+            )}
+          </button>
+          <button className={styles.playb}>
+            <FaStepForward
+              className={styles.playbIcon}
+              onClick={() => {
+                posRef.current += speedFact;
+                updateControls();
+              }}
+            />
+          </button>
+        </div>
       </div>
       <div className={styles.control}>
         <label hidden>Pos:</label>
@@ -201,7 +232,7 @@ const Controls = () => {
         <label>Julian day:</label>
         <input ref={julianDayRef} onKeyDown={jDayKeyDown} onBlur={jDayOnBlur} />
       </div>
-      <div className={styles.control}>
+      {/* <div className={styles.control}>
         <label>Start / Stop:</label>
         <input type="checkbox" onChange={runOnChange} />
       </div>
@@ -228,7 +259,7 @@ const Controls = () => {
         >
           Step backward
         </button>
-      </div>
+      </div> */}
 
       <div className={styles.control}>
         <label>1 second equals</label>
