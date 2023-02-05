@@ -2,6 +2,9 @@
 import { useStore } from "../store";
 import { useFrame } from "@react-three/fiber"
 
+//Note Controls handles this but we need to have the useFrame hook 
+//within the canvas component
+
 const AnimationController = () => {
 
 const posRef:any = useStore((s) => s.posRef);

@@ -1,5 +1,5 @@
 import styles from "./Controls.module.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 // import { useFrame } from "@react-three/fiber";
 import { folder, Leva, useControls } from "leva";
 import { useStore } from "../store";
@@ -18,12 +18,22 @@ import Playbtn from "./Playbtn";
 import Forwardbtn from "./Forwardbtn";
 import { Stats } from "@react-three/drei";
 import { FaPlay, FaPause, FaStepBackward, FaStepForward } from "react-icons/fa";
-
+console.log("Code outside controls component")
 const Controls = () => {
   const posRef = useStore((state) => state.posRef);
   const speedFact = useStore((state) => state.speedFact);
+  const [date, setDate] = useState(posToDate(posRef));
+
   const run = useStore((state) => state.run);
-  // useControls("banana",{ripe: false})
+
+
+
+
+
+
+
+
+
 
   useControls(() => ({
     // banana: folder({x:"x"}),
@@ -52,7 +62,8 @@ const Controls = () => {
   const timeRef = useRef();
   const julianDayRef = useRef();
   useEffect(() => {
-    useStore.subscribe((state) => (runRef.current = state.run));
+    // useStore.subscribe((state) => (runRef.current = state.run));
+    console.log("useEffect ran")
     updateControls();
 
     const intervalId = setInterval(() => {
@@ -61,8 +72,8 @@ const Controls = () => {
       }
     }, 100);
 
-    return () => clearInterval(intervalId);
-  }, []);
+    return () => {clearInterval(intervalId); updateControls();}
+  }, [run]);
 
   function updateControls() {
     posDisplayRef.current.value = 0 + posRef.current;
